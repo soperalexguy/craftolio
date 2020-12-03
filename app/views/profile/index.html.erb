@@ -1,0 +1,46 @@
+
+
+
+<div class='profiles'>
+    <div class='profile-cases'>
+        <% @profiles.each do |p| %>
+            <div class='profile-case'>
+                <div class='small-pic'>
+                    <img src="<%= asset_path(p.picture) %>" width="64px" height="64px" style='overflow:hidden;'>
+                </div>
+                <div class='small-credentials'>
+                    <div class='small-name'>
+                        <%= p.fname %> <%= p.lname %>
+                    </div>
+                    <div class='small-username'>
+                        @<%= p.username %>
+                    </div>
+                </div>
+              
+                
+                <div class="small-images">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <% p.posts.each do |ps| %>
+                                <img class="swiper-slide" src="<%= asset_path(ps.image) %>" width="100px" height="100px" >
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href='/profile/<%= p.id %>' class='view-profile'>View Profile</a>
+
+            </div>
+        <% end %>
+    </div>
+</div>
+<script>
+var swiper = new Swiper('.swiper-container', {
+  slidesPerView: 'auto',
+  spaceBetween: 10,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+});
+</script>

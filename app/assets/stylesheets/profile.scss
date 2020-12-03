@@ -1,0 +1,202 @@
+// Place all the styles related to the profile controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile-info {
+    margin-top: 30px;;
+    left:0;
+    width:100%;
+    height: 270px;
+    border-bottom: 4px solid #2D504C;
+    box-shadow: 0 4px 2px -2px rgba(0,0,0,.2);
+    display: inline-flex;
+    margin-bottom: 5px;
+}
+
+.profile-info .pic {
+    margin-right: 15px;
+    // overflow: hidden;
+    
+}
+
+.pic img{
+    border-radius: 100%;
+}
+
+.profile-info .profile-description {
+    margin-top: -36px;
+    height: 256px;
+}
+
+.profile-info .profile-description .names {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.profile-info .profile-description .username {
+    margin-top: -26px;
+    font-size: 20px;
+}
+
+.profile-info .profile-description .bio {
+    height: 180px;
+    max-width: 450px;
+    word-break: break-word;
+}
+
+.profile-info .profile-description .vl {
+    float: left;
+    border-left: 4px solid #2D504C;
+    height: 256px;
+}
+
+.posts-section{
+    text-align: center;
+    width: 520px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+.posts-section p{
+    margin: 20px auto;
+    font-size: 2em;
+    border-bottom: 4px solid #2D504C;
+    width: 150px;
+}
+
+.posts-section .post{
+    margin-bottom: 30px;
+}
+
+.posts-section .post .post-title{
+    font-size: 1.5em;
+    font-weight: bold;
+    background-color: #75BFBA;
+    padding: 10px 0px;
+    box-shadow: 0 4px 2px -2px rgba(0,0,0,.2);
+}
+
+.posts-section .post .post-details{
+    // height:0px;
+    // transition:200ms;
+    // opacity:0;
+    display:none;
+    background-color: #C6ECE7;
+    padding: 10px 0px;
+    margin-top: -4px;
+    box-shadow: 0 4px 2px -2px rgba(0,0,0,.2);
+}
+
+.posts-section .post .outter-wrapper{
+    display: inline-block; 
+}
+
+.posts-section .post .outter-wrapper .post-pic{
+    margin: 0px auto;
+    width: 520px;
+    height: 520px;
+    background-color: #2D504C;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.posts-section .post .outter-wrapper  .post-pic .pic{
+    max-width:512px;
+    max-height:512px;
+    display: block;
+    margin: 0 auto;
+}
+
+
+.main {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 700px;
+    max-width: 1200px;
+    background-color: #9bdbd7;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.profiles{
+    margin-top: 100px;
+    max-width: 1500px;
+    min-width: 700px;
+    margin: 0 auto;
+}
+
+// .swiper-container {
+//     width: 100%;
+//     height: 100%;
+//   }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    width: 80px;
+    height:80px;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+
+//   .swiper-slide:nth-child(2n) {
+//     width: 60%;
+//   }
+
+//   .swiper-slide:nth-child(3n) {
+//     width: 40%;
+//   }
+
+.profile-case{
+    display: flex;
+    align-items: center;
+    background-color: #54a19c;
+    padding: 15px;
+    border-radius: 13px;
+}
+
+.small-credentials{
+    margin: 0 15px;
+}
+
+.small-pic img{
+    border-radius: 35px;
+}
+
+.small-images{
+    border: 2px solid #D03175;
+    flex-grow:1;
+    max-width: 1000px;
+}
+
+.profile-cases{
+    margin-top: 40px;
+}
+
+.view-profile{
+    border-radius: 7px;
+    padding: 12px 10px;
+    margin: 0 auto;
+    text-decoration: none;
+    background-color: #75BFBA;
+    color: #2D504C;
+    box-shadow: 0px 0px 5px .1px rgb(0, 0, 0);
+}
+
+.view-profile:hover{
+    background-color: #5caaa5;
+}

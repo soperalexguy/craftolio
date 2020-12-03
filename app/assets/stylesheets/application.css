@@ -1,0 +1,70 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body{
+    margin:0;
+    padding-top: 65px;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    background-color: #C6ECE7;
+    color: #2D504C;
+}
+
+@font-face{
+    font-family: 'Feeling Passionate';
+    src: url('/fonts/Feeling Passionate.ttf');
+}
+
+.topnav {
+    z-index: 10;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    background-color: #75BFBA;
+    height: 65px;
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+    display: flex;
+    align-items: center;
+}
+
+.topnav .logo {
+    font-family: 'Feeling Passionate';
+    background-color: #75BFBA;
+    font-size: 35px;
+    margin-left: 3%;
+    text-decoration: none;
+    color: #2D504C;
+}
+
+.topnav .links{
+    background-color: #75BFBA;
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 180px;
+    width: 100%;
+    background-color: #404848;
+}
+
+.links{
+    margin-left: 10px;
+    text-decoration: none;
+    color: #2D504C;
+    font-weight: bold;
+}

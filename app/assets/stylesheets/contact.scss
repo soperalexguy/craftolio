@@ -1,0 +1,33 @@
+// Place all the styles related to the contact controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@font-face{
+    font-family: 'Feeling Passionate';
+    src: url('/fonts/Feeling Passionate.ttf');
+}
+
+.body-contact{
+    width: 730px;
+    text-align: center;
+    margin: auto;
+    background-color: #75BFBA;
+    padding: 0 30px;
+    padding-bottom: 30px;
+    border-radius: 20px;
+}
+
+.contact-form{
+    margin: auto;
+    text-align: left;
+}
+
+.contact-title p{
+    font-family: 'Feeling Passionate';
+    font-size: 3em;
+}
+
+.contact-text{
+    font-weight:bold;
+    margin-bottom: 20px;
+}
