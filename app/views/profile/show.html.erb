@@ -1,10 +1,7 @@
 <div class='main'>
     <div class='profile-info'>
         <div class='pic'>
-            <% if !@profile.picture.attached? %>
-                <% @profile.picture.attach(io: File.open("public/images/profile-pics/blank.png"), filename: 'blank.png', content_type: 'image/png') %>
-            <% end %>
-                <img src="<%= url_for(@profile.picture) %>" width="256px" height="256px" >
+            <img src="<%= url_for(@profile.picture) %>" width="256px" height="256px" >
         </div>   
         <div class='profile-description'>
             <div class='names'>
@@ -16,9 +13,32 @@
             <div class='bio'>
                 <p><%= @profile.bio %></p>
             </div>
+            <% if user_signed_in? %>
+                <% if @profile.username == current_user.username %>
+                    <div>
+                        <%= link_to "Edit Profile", "/profile/"+@profile.id.to_s+"/edit", class:"edit-profile-button" %>
+                    </div>
+                <% end %>
+            <% end %>
         </div>
     </div>
     <div class='posts-section'>
+    <% if user_signed_in? %>
+        <% if @profile.user_id == current_user.id %>
+            <div class="new-post-form">
+                <div class="post-form-title">Create New Post</div>
+                <%= form_for(@newpost, method: :post) do |f| %>
+                    <%= f.label :title, "Post Title:"%><br>
+                    <%= f.text_area :title, size: "40x1", style:"resize: none;"%><br>
+                    <%= f.label :description, "Post Description:"%><br>
+                    <%= f.text_area :description, size: "40x5", style:"resize: none;"%><br>
+                    <%= f.label :picture, "Post Picture:"%><br>
+                    <%= f.file_field :picture %><br>
+                    <%= f.submit "Create Post" %>
+                <% end %>
+            </div>
+        <% end %>
+    <% end %>
     <p>Timeline</p>
         <% @posts.each_with_index do |p,index| %>
             <div class='post' id="active-post--<%= p.id %>" onclick="clickHandler(<%= p.id %>)">
@@ -27,7 +47,7 @@
                 </div>
                 <div class='outter-wrapper'>
                     <div class='post-pic'>
-                        <img src='<%= url_for(p.image) %>' class='pic'>
+                        <img src='<%= url_for(p.picture) %>' class='pic'>
                     </div>
                 </div>
                 <div class='post-details'>
@@ -78,21 +98,24 @@ async function clickHandler(post_id){
     
     let comment_title, comment_body, indv_comment
 
-    console.log("<%= "index".to_i %>")
-
     const comments = await $.ajax("/posts/" + post_id + "/comments").promise()
     
-    console.log(comments)
     comments.forEach(comment => {
         indv_comment = document.createElement('div')
         indv_comment.classList.add('comment-indv')
+        comment_head = document.createElement('div')
+        comment_head.classList.add('comment-head')
+        comment_date = document.createElement('div')
+        comment_date.innerText = comment.created_at
         comment_title = document.createElement('div')
         comment_title_link = document.createElement('a')
         comment_title.classList.add('comment-title')
         comment_title_link.href = "/profile/" + comment.profile.id
         comment_title.innerText = "@" + comment.profile.username
         comment_title_link.appendChild(comment_title)
-        indv_comment.appendChild(comment_title_link)
+        comment_head.appendChild(comment_title_link)
+        comment_head.appendChild(comment_date)
+        indv_comment.appendChild(comment_head)
 
         comment_body = document.createElement('div')
         comment_body.classList.add('comment-body')
@@ -100,8 +123,52 @@ async function clickHandler(post_id){
         indv_comment.appendChild(comment_body)
         comment_box.appendChild(indv_comment)
     });
+    
+    const comment_box_outer = document.createElement('div')
+    comment_box_outer.classList.add('comment-box-outer')
 
-    desc.appendChild(comment_box)
+    comment_box_outer.appendChild(comment_box)
+    desc.appendChild(comment_box_outer)
+
+    <% if user_signed_in? %>
+        const new_comment = document.createElement('div')
+        new_comment.classList.add('new-comment')
+
+        var form = document.createElement('form')
+        form.setAttribute("method", "POST")
+        form.setAttribute("action", "/comments")
+
+        var AT = document.createElement("input")
+        AT.setAttribute("name", "authenticity_token")
+        AT.setAttribute("type", "hidden")
+        AT.setAttribute("value", "NrOp5bsjoLRuK8IW5+dQEYjKGUJDe7TQoZVvq95Wteg=")
+
+        var CD = document.createElement("input")
+        CD.setAttribute("id", "comment_details")
+        CD.setAttribute("name", "comment[details]")
+        CD.setAttribute("type", "text")
+        CD.setAttribute("placeholder", "Write comment here...")
+        CD.setAttribute("style", "width: 387.5px;")
+
+        var CPI = document.createElement("input")
+        CPI.setAttribute("id", "comment_post_id")
+        CPI.setAttribute("name", "comment[post_id]")
+        CPI.setAttribute("type", "hidden")
+        CPI.setAttribute("value", post_id.toString())
+
+        var S = document.createElement("input")
+        S.setAttribute("name", "commit")
+        S.setAttribute("type", "submit")
+        S.setAttribute("value", "Post Comment")
+
+        form.appendChild(AT)
+        form.appendChild(CD)
+        form.appendChild(CPI)
+        form.appendChild(S)
+
+        new_comment.appendChild(form)
+        desc.appendChild(new_comment)
+    <% end %>
 
     img.src = image.querySelector('img').src
     while(lightbox.firstChild){
@@ -109,6 +176,7 @@ async function clickHandler(post_id){
     }
     lightbox.appendChild(outerimg)
     lightbox.appendChild(desc)
+    
 }
 
 lightbox.addEventListener('click', e => {

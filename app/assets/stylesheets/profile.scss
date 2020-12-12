@@ -39,9 +39,18 @@
 }
 
 .profile-info .profile-description .bio {
-    height: 180px;
+    height: 130px;
     max-width: 450px;
     word-break: break-word;
+}
+
+.edit-profile-button{
+    text-decoration: none;
+    color: #2D504C;
+    font-weight: bold;
+    background-color: white;
+    padding: 10px 8px;
+    border-radius: 10px;
 }
 
 .profile-info .profile-description .vl {
@@ -246,23 +255,50 @@
     padding-bottom: 30px;
     border-bottom: 1px solid #2D504C;
 }
-
-.comment-box{
-    width: 85%;
+.comment-box-outer{
     margin: 0 auto;
     align-items: center;
-    .comment-indv{
-        background-color: #5aa09b;
-        padding: 5px 3px;
-        a{
-            text-decoration: none;
-            color: #2D504C;
+    width: 85%;
+    overflow-x: hidden; 
+    overflow-y: auto; 
+    display: flex;
+    flex-direction: column-reverse;
+    height: 500px;
+    .comment-box{
+        width: 100%;
+        .comment-indv{
+            width: 100%;
+            background-color: #5aa09b;
+            padding: 5px 3px;
+            a{
+                text-decoration: none;
+                color: #2D504C;
+            }
+            .comment-head{
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid #2D504C;
+                .comment-title{
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+            }
+            margin-bottom: 20px;
         }
-        .comment-title{
-            font-weight: bold;
-            border-bottom: 1px solid #2D504C;
-            cursor: pointer;
-        }
-        margin-bottom: 20px;
     }
+}
+
+.new-post-form{
+    background-color: #2D504C;
+    color: #5aa09b;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.post-form-title{
+    font-size: 2em;
+    text-decoration: underline;
+    margin-bottom: 7px;
 }
