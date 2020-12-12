@@ -15,15 +15,36 @@
 
   <body>
     <div class='topnav'>
+      <div class='left-side'>
         <a href="/" class='logo'><span style="color:#D03175;">Craft</span>olio  |</a>
-      <div class='links'>
-        <a href='/' class='links'>Home</a>
-        &nbsp&nbsp|
-        <a href='/profiles' class='links'>Profiles</a>
-        &nbsp&nbsp|
-        <a href='/contact' class='links'>Contact Us</a>
+        <div class='links'>
+          <% if user_signed_in? %>
+            <% if !Profile.find_by(username: current_user.username) %>
+              <%= link_to 'Create Profile', "/profiles/new", class: 'links' %> 
+              &nbsp&nbsp|
+            <% else %>
+              <a href='/profile/<%= Profile.find_by(username: current_user.username).id %>' class='links'>My Profile</a>
+              &nbsp&nbsp|
+            <% end %>
+          <% end %>
+          <a href='/profiles' class='links'>Profiles</a>
+          &nbsp&nbsp|
+          <a href='/contact' class='links'>Contact Us</a>
+        </div>
+      </div>
+      <div class='right-side'>
+        <div class='user-actions'>
+          <% if user_signed_in? %>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'action-link-sign' %>
+          <% else %>
+            <%= link_to "Sign In", new_user_session_path, class: 'action-link-sign' %>
+            <%= link_to 'Register', new_user_registration_path, class: 'action-link-register' %>
+          <% end %>
+        </div>
       </div>
     </div>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

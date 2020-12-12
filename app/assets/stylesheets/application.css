@@ -38,6 +38,21 @@ body{
     box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.left-side{
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+    align-items: center;
+}
+
+.right-side{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
 }
 
 .topnav .logo {
@@ -67,4 +82,22 @@ body{
     text-decoration: none;
     color: #2D504C;
     font-weight: bold;
+}
+
+.action-link-register{
+    margin-left: 10px;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: #2D504C;
+    color: white;
+}
+
+.action-link-sign{
+    margin-left: 10px;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: white;
+    color: #2D504C;
 }
