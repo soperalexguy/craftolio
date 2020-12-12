@@ -6,7 +6,14 @@ Rails.application.routes.draw do
   get '/' => 'home#home'
   post '/' => 'home#home'
 
-  resources :profile
+  get '/profile/:id' => 'profile#show'
+  get '/profiles' => 'profile#index'
+  get '/profiles/new' => 'profile#new'
+  get '/profile/:id/edit' => 'profile#edit'
+  patch '/profiles' => 'profile#update'
+  put '/profile/:id' => 'profile#update'
+  post '/profiles' => 'profile#create'
+  delete '/profile/:id' => 'profile#destroy'
 
   post '/posts' => 'post#create'
 
