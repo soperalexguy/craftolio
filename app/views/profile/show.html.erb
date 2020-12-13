@@ -41,18 +41,27 @@
     <% end %>
     <p>Timeline</p>
         <% @posts.each_with_index do |p,index| %>
-            <div class='post' id="active-post--<%= p.id %>" onclick="clickHandler(<%= p.id %>)">
-                <div class='post-title'>
-                    <%= p.title %>
-                </div>
-                <div class='outter-wrapper'>
-                    <div class='post-pic'>
-                        <img src='<%= url_for(p.picture) %>' class='pic'>
+            <div class="whole-post">
+                <div class='post' id="active-post--<%= p.id %>" onclick="clickHandler(<%= p.id %>)">
+                    <div class='post-title'>
+                        <%= p.title %>
+                    </div>
+                    <div class='outter-wrapper'>
+                        <div class='post-pic'>
+                            <img src='<%= url_for(p.picture) %>' class='pic'>
+                        </div>
+                    </div>
+                    <div class='post-details'>
+                        <%= p.description %>
                     </div>
                 </div>
-                <div class='post-details'>
-                    <%= p.description %>
-                </div>
+                <% if user_signed_in? %>
+                    <% if @profile.username == current_user.username %>
+                        <div class="post-options">
+                            <%= link_to "X", '/posts/'+p.id.to_s, data: {confirm: "This will delete your post, Are you sure?"}, :method => :delete, class:"post-delete-button" %>
+                        </div>
+                    <% end %>
+                <% end %>
             </div>
         <% end %>
     </div>
@@ -148,7 +157,7 @@ async function clickHandler(post_id){
         CD.setAttribute("name", "comment[details]")
         CD.setAttribute("type", "text")
         CD.setAttribute("placeholder", "Write comment here...")
-        CD.setAttribute("style", "width: 387.5px;")
+        CD.setAttribute("style", "width: 350px;")
 
         var CPI = document.createElement("input")
         CPI.setAttribute("id", "comment_post_id")

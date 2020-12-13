@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   delete '/profile/:id' => 'profile#destroy'
 
   post '/posts' => 'post#create'
+  delete '/posts/:id' => 'post#destroy'
 
   post '/comments' => 'comment#create'
   get '/contact' => 'contact#contact'

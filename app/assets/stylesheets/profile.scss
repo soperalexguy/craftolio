@@ -263,7 +263,7 @@
     overflow-y: auto; 
     display: flex;
     flex-direction: column-reverse;
-    height: 500px;
+    max-height: 400px;
     .comment-box{
         width: 100%;
         .comment-indv{
@@ -301,4 +301,24 @@
     font-size: 2em;
     text-decoration: underline;
     margin-bottom: 7px;
+}
+
+.new-comment{
+    position: relative;
+    bottom: 0;
+    justify-content: center;
+    text-align: center;
+}
+
+.whole-post{
+    display: flex;
+}
+
+.post-delete-button{
+    text-decoration: none;
+    color: white;
+    background-color: #2D504C;
+    padding: 5px 8px;
+    border-radius: 2px;
+    margin-left: 10px;
 }

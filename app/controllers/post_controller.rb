@@ -5,6 +5,12 @@ class PostController < ApplicationController
         render json: comments.as_json(:include => {:profile => {}})
     end
 
+    def destroy
+      @post = Post.find(params[:id])
+      @post.destroy
+      redirect_to "/profile/" + Profile.find_by(username: current_user.username).id.to_s
+    end
+
     def create
         @post = Post.new(post_params)
         @post.profile_id = Profile.find_by(user_id: current_user.id).id
