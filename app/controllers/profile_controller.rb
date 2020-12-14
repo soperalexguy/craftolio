@@ -13,13 +13,15 @@ class ProfileController < ApplicationController
 
   
   def edit
-    @profile = Profile.find_by(username: current_user.username)
+    @profile = Profile.find(params[:id])
   end
 
   def update
-    @profile = Profile.find_by(username: current_user.username)
-    @profile.username = current_user.username
-    @profile.user_id = current_user.id
+    if !user_signed_in?
+      @profile = Profile.find_by(username: profile_params[:username])
+    else
+      @profile = Profile.find_by(username: current_user.username)
+    end
     if !@profile.picture.attached?
       @profile.picture.attach(io: File.open("public/images/profile-pics/blank.png"), filename: 'blank.png', content_type: 'image/png')
     end
@@ -30,14 +32,22 @@ class ProfileController < ApplicationController
     end
   end
 
+  # The function creates a new hollow profile object to be used to create a form for creating the whole object
   def new 
     @profile = Profile.new 
   end
 
+  # Creates a new profile using the profile parameters which it gets from a form and
+  # checks, if you are signed in to add the username and user_id of the user that is posting.
+  # It also checks if you added a profile picture, if not, it attached a blank user default image.
+  # If this is successful it send you to the profile you created,
+  # or if it's not, it renders the page again
   def create 
     @profile = Profile.new(profile_params)
-    @profile.username = current_user.username
-    @profile.user_id = current_user.id
+    if user_signed_in?
+      @profile.username = current_user.username
+      @profile.user_id = current_user.id
+    end
     if !@profile.picture.attached?
       @profile.picture.attach(io: File.open("public/images/profile-pics/blank.png"), filename: 'blank.png', content_type: 'image/png')
     end
@@ -50,7 +60,7 @@ class ProfileController < ApplicationController
 
   private 
     def profile_params
-      params.require(:profile).permit(:bio, :picture, :fname, :lname) 
+      params.require(:profile).permit(:bio, :picture, :fname, :lname, :username, :user_id) 
     end
 
 end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root to: 'home#home'
   get '/' => 'home#home'
-  post '/' => 'home#home'
+  post 'request_contact', to: 'home#request_contact'
 
   get '/profile/:id' => 'profile#show'
   get '/profiles' => 'profile#index'
@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   patch '/profiles' => 'profile#update'
   put '/profile/:id' => 'profile#update'
   post '/profiles' => 'profile#create'
-  delete '/profile/:id' => 'profile#destroy'
 
   post '/posts' => 'post#create'
   delete '/posts/:id' => 'post#destroy'

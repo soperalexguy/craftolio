@@ -1,7 +1,7 @@
 <div class='main'>
     <div class='profile-info'>
         <div class='pic'>
-            <img src="<%= url_for(@profile.picture) %>" width="256px" height="256px" >
+            <img src="<%= url_for(@profile.picture) if @profile.picture.attached? %>" width="256px" height="256px" >
         </div>   
         <div class='profile-description'>
             <div class='names'>
@@ -48,7 +48,7 @@
                     </div>
                     <div class='outter-wrapper'>
                         <div class='post-pic'>
-                            <img src='<%= url_for(p.picture) %>' class='pic'>
+                            <img src='<%= url_for(p.picture) if p.picture.attached? %>' class='pic'>
                         </div>
                     </div>
                     <div class='post-details'>

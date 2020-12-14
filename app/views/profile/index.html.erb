@@ -3,7 +3,7 @@
         <% @profiles.each do |p| %>
             <div class='profile-case'>
                 <div class='small-pic'>
-                    <img src="<%= url_for(p.picture) %>" width="64px" height="64px" style='overflow:hidden;'>
+                    <img src="<%= url_for(p.picture) if p.picture.attached? %>" width="64px" height="64px" style='overflow:hidden;'>
                 </div>
                 <div class='small-credentials'>
                     <div class='small-name'>
@@ -17,7 +17,7 @@
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             <% p.posts.each do |ps| %>
-                                <img class="swiper-slide" src="<%= url_for(ps.picture) %>" width="100px" height="100px" >
+                                <img class="swiper-slide" src="<%= url_for(ps.picture) if ps.picture.attached? %>" width="100px" height="100px" >
                             <% end %>
                         </div>
                     </div>

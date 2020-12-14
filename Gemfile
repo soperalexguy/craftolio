@@ -63,3 +63,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails'
+gem 'rails-controller-testing'
+gem 'seed_dump'
+
+source "https://rubygems.org"
+
+gem "minitest"
+

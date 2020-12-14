@@ -9,6 +9,6 @@ class UserMailer < ApplicationMailer
     @text = text
     @email = email
 
-    mail to: "am02809@surrey.ac.uk", subject: "Craftolio Contact Us"
+    mail subject: "Craftolio Contact Us"
   end
 end
