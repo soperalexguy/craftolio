@@ -1,10 +1,8 @@
 class UserMailer < ApplicationMailer
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.contact_us.subject
-  #
+  # Gets the text and email from a function in the home controller
+  # and uses them to create global variables to be used in the email.
+  #It also sets the subject of the email.
   def contact_us(text, email)
     @text = text
     @email = email

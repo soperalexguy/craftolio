@@ -1,5 +1,8 @@
 class ProfileController < ApplicationController
 
+  # Gets the profile from the :id parameter to be shown,
+  # also gets the posts of that profile,
+  # and creates a new hollow post and comment object in case you are visiting the page to post something
   def show
       @profile = Profile.find(params[:id])
       @posts = @profile.posts 
@@ -7,15 +10,21 @@ class ProfileController < ApplicationController
       @newcomment = Comment.new
   end
 
+  # Gets all profiles and all posts to be shown in the page
   def index
       @profiles = Profile.left_joins(:posts).group(:id)
   end
 
-  
+  # This function gets the profile thats going to be edited, so it can get the already existing field data
+  # to place in the forms
   def edit
     @profile = Profile.find(params[:id])
   end
 
+  # Gets the field data from the profile_params which get it from the form of the function above,
+  # adds a blank user default image if no image is selected,
+  # and it updates the attributes of the profile, redirecting to the profile if it is sucessful,
+  # or rendering the page again
   def update
     if !user_signed_in?
       @profile = Profile.find_by(username: profile_params[:username])

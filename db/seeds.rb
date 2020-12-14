@@ -12,7 +12,7 @@ Profile.create!([
   {fname: "Iraida", lname: "Neokleous", username: "irairi", bio: "I love to paint and dabble in photography! Can't wait to hear what you all think!", user_id: 2},
   {fname: "Sotiris", lname: "Zannetos", username: "sotras", bio: "My name is Sotiris. I'm from Cyprus. I'm here just to view the wonderful art and comment on them.", user_id: 3},
   {fname: "Michalis", lname: "Tryfonos", username: "zmikes", bio: "I like to hate so don't judge me!", user_id: 4},
-  {fname: "Nicholas", lname: "Batzakas", username: "batzboi", bio: "I'm white. #privilege", user_id: 5},
+  {fname: "Nicholas", lname: "Batzakas", username: "batzboi", bio: "I'm white :/", user_id: 5},
   {fname: "Giorgos", lname: "Varnava", username: "giorgoscut", bio: "I am circumcised.", user_id: 6},
   {fname: "Yiannis", lname: "Demetriou", username: "yiannis320", bio: "I am yiannis 320. I hate art but I like being a part of things so here I am!", user_id: 7}
 ])

@@ -1,8 +1,9 @@
 <div class='main'>
     <div class='profile-info'>
+        <!-- shows all details of the profile, including picture if there is one -->
         <div class='pic'>
             <img src="<%= url_for(@profile.picture) if @profile.picture.attached? %>" width="256px" height="256px" >
-        </div>   
+        </div>  
         <div class='profile-description'>
             <div class='names'>
                 <p><%= @profile.fname %> <%= @profile.lname %></p>
@@ -13,6 +14,7 @@
             <div class='bio'>
                 <p><%= @profile.bio %></p>
             </div>
+            <!-- if you are signed in and the profile is yours, you can edit the profile or make a new post-->
             <% if user_signed_in? %>
                 <% if @profile.username == current_user.username %>
                     <div>
@@ -39,6 +41,7 @@
             </div>
         <% end %>
     <% end %>
+    <!-- In the timeline, all posts of the profile are shown, and if you are signed in as the profile owner, you can delete posts -->
     <p>Timeline</p>
         <% @posts.each_with_index do |p,index| %>
             <div class="whole-post">
@@ -68,6 +71,7 @@
 </div>
 
 <script>
+//creates a lightbox object, and makes sure there is only one per page
 lightbox = null
 if(!lightbox){
     lightbox = document.createElement('div')
@@ -81,6 +85,11 @@ allLightboxes.forEach(l => {
     }
 });
 
+//by clicking on a post, this function is called.
+//It slowly creates elements to make an actual lightbox 
+//incorporating the image you clicked on, it's title, details, and all its comments
+//if you are signed in, it also let's you make a new comment on the post, by creating a form for a new comment.
+//it then appends everything to the lightbox and activates it
 async function clickHandler(post_id){
     let image = document.getElementById("active-post--" + post_id)
     
@@ -187,12 +196,12 @@ async function clickHandler(post_id){
     lightbox.appendChild(desc)
     
 }
-
+//when clicking outside of the elements in the lightbox, it deactivates it 
 lightbox.addEventListener('click', e => {
     if(e.target != e.currentTarget) return
     lightbox.classList.remove('active')
 })
-
+//This makes the details of the post slide down, when hovering on the post
 $(document).ready(function(){
   $('.post').hover(
     function(){ 

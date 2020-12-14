@@ -1,5 +1,6 @@
 <div class='profiles'>
     <div class='profile-cases'>
+        <!-- uses for loops to print all profiles with all their comments -->
         <% @profiles.each do |p| %>
             <div class='profile-case'>
                 <div class='small-pic'>
@@ -30,6 +31,7 @@
     </div>
 </div>
 <script>
+// this is used when there are too many posts for the page to show, so you can slide in the container to view all of them with your mouse
 var swiper = new Swiper('.swiper-container', {
   slidesPerView: 'auto',
   spaceBetween: 10,
